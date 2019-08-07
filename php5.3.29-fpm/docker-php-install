@@ -1,0 +1,169 @@
+#!/bin/bash
+set -eux
+
+function install() {
+  local iniFile="${PHP_INI_SCAN_DIR}/${1}.ini"
+  if [ -f ${iniFile} ];then
+    echo "Package ${1} already installed"
+    return
+  fi
+  case ${1} in
+    'amqp')
+        yum install -y librabbitmq-devel \
+        && echo -e "\n" | pecl install amqp-1.9.3 \
+        && echo "extension=amqp.so" > ${iniFile}
+    ;;
+    'apcu')
+        echo -e "\n\n" | pecl install apcu-4.0.11 \
+        && echo "extension=apcu.so" > ${iniFile}
+    ;;
+    'gmagick')
+        yum install -y GraphicsMagick-devel \
+        && echo -e "\n" | pecl install gmagick-1.1.7RC3 \
+        && echo "extension=gmagick.so" > ${iniFile}
+    ;;
+    'hrtime')
+        pecl install hrtime-0.6.0 \
+        && echo "extension=hrtime.so" > ${iniFile}
+    ;;
+    'igbinary')
+        pecl install igbinary-2.0.8 \
+        && echo "extension=igbinary.so" > ${iniFile}
+    ;;
+    'imagick')
+        yum install -y ImageMagick-devel \
+        && echo -e "\n" | pecl install imagick-3.3.0 \
+        && echo "extension=imagick.so" > ${iniFile}
+    ;;
+    'libsodium')
+        yum install -y libsodium-devel \
+        && pecl install libsodium-1.0.2 \
+        && echo "extension=libsodium.so" > ${iniFile}
+    ;;
+    'lzf')
+        echo -e "\n" | pecl install lzf-1.6.7 \
+        && echo "extension=lzf.so" > ${iniFile}
+    ;;
+    'memcache')
+        echo -e "\n" | pecl install memcache-3.0.8 \
+        && echo "extension=memcache.so" > ${iniFile}
+    ;;
+    'memcached')
+        yum install -y libmemcached-devel \
+        && echo -e "\n" | pecl install memcached-2.2.0 \
+        && echo "extension=memcached.so" > ${iniFile}
+    ;;
+    'mongo')
+        echo -e "yes\n" | pecl install mongo-1.6.16 \
+        && echo "extension=mongo.so" > ${iniFile}
+    ;;
+    'mongodb')
+        pecl install mongodb-0.6.3 \
+        && echo "extension=mongodb.so" > ${iniFile}
+    ;;
+    'msgpack')
+        pecl install msgpack-0.5.7 \
+        && echo "extension=msgpack.so" > ${iniFile}
+    ;;
+    'oauth')
+        pecl install oauth-1.2.3 \
+        && echo "extension=oauth.so" > ${iniFile}
+    ;;
+    'rar')
+        pecl install rar-4.0.0 \
+        && echo "extension=rar.so" > ${iniFile}
+    ;;
+    'redis')
+        install igbinary
+        install lzf
+        echo -e "yes\nyes\n" | pecl install redis-4.3.0 \
+        && echo "extension=redis.so" > ${iniFile}
+    ;;
+    'solr')
+        echo -e "\n\n\n" | pecl install solr-2.4.0 \
+        && echo "extension=solr.so" > ${iniFile}
+    ;;
+    'ssh2')
+        yum install -y libssh2-devel \
+        && echo -e "\n" | pecl install ssh2-0.13 \
+        && echo "extension=ssh2.so" > ${iniFile}
+    ;;
+    'stomp')
+        ln -s /usr/lib64/libssl.so /usr/lib/libssl.so \
+        && echo -e "\n" | pecl install stomp-1.0.9 \
+        && echo "extension=stomp.so" > ${iniFile}
+    ;;
+    'svm')
+        yum install -y libsvm-devel \
+        && pecl install svm-0.1.9 \
+        && echo "extension=svm.so" > ${iniFile}
+    ;;
+    'swoole')
+        pecl install swoole-1.9.23 \
+        && echo "extension=swoole.so" > ${iniFile}
+    ;;
+    'sync')
+        pecl install sync-1.1.1 \
+        && echo "extension=sync.so" > ${iniFile}
+    ;;
+    'timezonedb')
+        pecl install timezonedb \
+        && echo "extension=timezonedb.so" > ${iniFile}
+    ;;
+    'varnish')
+        yum install -y varnish-libs-devel \
+        && pecl install varnish-1.2.4 \
+        && echo "extension=varnish.so" > ${iniFile}
+    ;;
+    'yaf')
+        pecl download yaf-2.3.5 \
+        && tar -zxf yaf-2.3.5.tgz \
+        && cd yaf-2.3.5 \
+        && phpize \
+        && ./configure \
+        && make \
+        && make install \
+        && cd .. \
+        && rm -rf yaf* \
+        && echo "extension=yaf.so" > ${iniFile}
+    ;;
+    'yaml')
+        yum install -y libyaml-devel \
+        && echo -e "\n" | pecl install yaml-1.3.2 \
+        && echo "extension=yaml.so" > ${iniFile}
+    ;;
+    'yar')
+        install msgpack
+        echo -e "yes\n" | pecl install yar-1.2.5 \
+        && echo "extension=yar.so" > ${iniFile}
+    ;;
+    'opcache')
+        pecl install zendopcache-7.0.5 \
+        && echo "zend_extension=/usr/local/lib/php/extensions/$(ls /usr/local/lib/php/extensions)/opcache.so" > ${iniFile}
+    ;;
+    'zookeeper')
+        workDir=$(pwd)
+        curl -O http://mirror-hk.koddos.net/apache/zookeeper/zookeeper-3.4.14/zookeeper-3.4.14.tar.gz \
+        && tar -zxf zookeeper-3.4.14.tar.gz \
+        && cd zookeeper-3.4.14/zookeeper-client/zookeeper-client-c \
+        && ./configure \
+        && make \
+        && make install \
+        && cd ${workDir} \
+        && rm -rf zookeeper* \
+        && pecl install zookeeper-0.5.0 \
+        && echo "extension=zookeeper.so" > ${iniFile}
+    ;;
+    *)
+        echo "No package ${1} available"
+    ;;
+  esac
+}
+
+for var in "$@"
+do
+  install $var
+done
+
+yum clean all
+pecl clear-cache
