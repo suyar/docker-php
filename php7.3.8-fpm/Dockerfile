@@ -47,7 +47,7 @@ RUN set -eux; \
     && rm -rf libzip*
 
 RUN set -eux; \
-    echo "/usr/local/lib64\n/usr/local/lib\n/usr/lib\n/usr/lib64" >> /etc/ld.so.conf \
+    echo -e "/usr/local/lib64\n/usr/local/lib\n/usr/lib\n/usr/lib64" >> /etc/ld.so.conf \
     && ldconfig -v
 
 ENV PHP_VERSION=7.3.8 \
