@@ -140,7 +140,8 @@ function install() {
         && echo "extension=solr.so" > ${iniFile}
     ;;
     'ssh2')
-        git clone https://github.com/php/pecl-networking-ssh2.git \
+        yum install -y libssh2-devel \
+        && git clone https://github.com/php/pecl-networking-ssh2.git \
         && cd pecl-networking-ssh2 \
         && phpize \
         && ./configure \
