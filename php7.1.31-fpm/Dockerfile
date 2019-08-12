@@ -112,9 +112,10 @@ RUN set -eux; \
     && cp php.ini-development ${PHP_INI_DIR}/php.ini-development \
     && cp php.ini-development ${PHP_INI_DIR}/php.ini \
     && cp ${PHP_FPM_DIR}/php-fpm.conf.default ${PHP_FPM_DIR}/php-fpm.conf \
-    && sed -i 's/^include=.*/include=etc\/php-fpm.d\/*.conf/' ${PHP_FPM_DIR}/php-fpm.conf \
+    && sed -i 's/^include.*/include = etc\/php-fpm.d\/*.conf/' ${PHP_FPM_DIR}/php-fpm.conf \
+    && sed -i "s/^;daemonize.*/daemonize = no/" ${PHP_FPM_DIR}/php-fpm.conf \
     && cp ${PHP_FPM_SCAN_DIR}/www.conf.default ${PHP_FPM_SCAN_DIR}/www.conf \
-    && echo 'daemonize = no' > ${PHP_FPM_SCAN_DIR}/docker.conf \
+    && sed -i "s/127.0.0.1://" ${PHP_FPM_SCAN_DIR}/www.conf \
     && pecl channel-update pecl.php.net \
     && cd ~ \
     && rm -rf php*
