@@ -1,0 +1,297 @@
+#!/bin/bash
+set -eux
+
+EXT_AMQP="amqp-1.10.2"
+EXT_APCU="apcu-5.1.19"
+EXT_APCU_BC="apcu_bc-1.0.5"
+EXT_CMARK="cmark-1.2.0"
+EXT_DS="ds-1.3.0"
+EXT_EVENT="event-3.0.2"
+EXT_GMAGICK="gmagick-2.0.5RC1"
+EXT_GRPC="grpc-1.34.0"
+EXT_IGBINARY="igbinary-3.1.6"
+EXT_IMAGICK="imagick-3.4.4"
+EXT_LZF="LZF-1.6.8"
+EXT_MCRYPT="mcrypt-1.0.4"
+EXT_MSGPACK="msgpack-2.1.2"
+EXT_MEMCACHED="memcached-3.1.5"
+EXT_MONGODB="mongodb-1.9.0"
+EXT_OAUTH="oauth-2.0.7"
+EXT_RAR="rar-4.2.0"
+EXT_REDIS="redis-5.3.2"
+EXT_SOLR="solr-2.5.1"
+EXT_SSH2="ssh2-1.2"
+EXT_SWOOLE="swoole-4.5.9"
+EXT_TIMEZONEDB="timezonedb-2020.4"
+EXT_XLSWRITER="xlswriter-1.3.6"
+EXT_YAF="yaf-3.2.5"
+EXT_YAML="yaml-2.2.0"
+EXT_YAR="yar-2.1.2"
+
+function compile() {
+  local version="${1}"
+  local file_name="${1}.tgz"
+  local download_url="https://pecl.php.net/get/${file_name}"
+  local options="${2}"
+  local ini_name="${PHP_INI_SCAN_DIR}/${3}.ini"
+  local ext_name="${4}"
+
+  if [ -f ${ini_name} ];then
+    echo "Package ${version} already installed"
+    return
+  fi
+
+  cd ${PHP_EXT_DIR}
+  rm -rf ${version} ${file_name}
+  curl -o ${file_name} ${download_url}
+  tar -zxf ${file_name}
+  cd ${version}
+  phpize
+  ./configure ${options}
+  make -j $(nproc)
+  make install
+  make clean
+  cd ..
+  rm -rf ${file_name} ${version}
+  echo "extension=${ext_name}" > ${ini_name}
+}
+
+function install_deps() {
+    dnf --enablerepo=PowerTools install -y "$@"
+}
+
+#function install_ext_amqp() {
+#  local ext_name="amqp.so"
+#  local ini_name="amqp"
+#  local options=""
+#
+#  install_deps "librabbitmq-devel"
+#  compile "${EXT_AMQP}" "${options}" "${ini_name}" "${ext_name}"
+#}
+
+function install_ext_apcu() {
+  local ext_name="apcu.so"
+  local ini_name="apcu"
+  local options=""
+
+  compile "${EXT_APCU}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+#function install_ext_cmark() {
+#  local ext_name="cmark.so"
+#  local ini_name="cmark"
+#  local options=""
+#
+#  install_deps "cmark-devel"
+#  compile "${EXT_CMARK}" "${options}" "${ini_name}" "${ext_name}"
+#}
+
+function install_ext_ds() {
+  local ext_name="ds.so"
+  local ini_name="ds"
+  local options=""
+
+  compile "${EXT_DS}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+function install_ext_event() {
+  local ext_name="event.so"
+  local ini_name="event"
+  local options="--with-event-extra --with-event-openssl --enable-event-sockets"
+
+  install_deps "libevent-devel"
+  compile "${EXT_EVENT}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+#function install_ext_gmagick() {
+#  local ext_name="gmagick.so"
+#  local ini_name="gmagick"
+#  local options=""
+#
+#  install_deps "GraphicsMagick-devel"
+#  compile "${EXT_GMAGICK}" "${options}" "${ini_name}" "${ext_name}"
+#}
+
+function install_ext_grpc() {
+  local ext_name="grpc.so"
+  local ini_name="grpc"
+  local options=""
+
+  compile "${EXT_GRPC}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+function install_ext_igbinary() {
+  local ext_name="igbinary.so"
+  local ini_name="igbinary"
+  local options=""
+
+  compile "${EXT_IGBINARY}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+#function install_ext_imagick() {
+#  local ext_name="imagick.so"
+#  local ini_name="imagick"
+#  local options=""
+#
+#  install_deps "ImageMagick-devel"
+#  compile "${EXT_IMAGICK}" "${options}" "${ini_name}" "${ext_name}"
+#}
+
+function install_ext_lzf() {
+  local ext_name="lzf.so"
+  local ini_name="lzf"
+  local options=""
+
+  compile "${EXT_LZF}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+function install_ext_mcrypt() {
+  local ext_name="mcrypt.so"
+  local ini_name="mcrypt"
+  local options=""
+
+  install_deps "libmcrypt-devel"
+  compile "${EXT_MCRYPT}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+function install_ext_memcached() {
+  local ext_name="memcached.so"
+  local ini_name="memcached"
+  local options="--enable-memcached-session --enable-memcached-igbinary --enable-memcached-msgpack --enable-memcached-sasl"
+
+  install_ext_igbinary
+  install_ext_msgpack
+  install_deps "libmemcached-devel" "libevent-devel"
+  compile "${EXT_MEMCACHED}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+function install_ext_mongodb() {
+  local ext_name="mongodb.so"
+  local ini_name="mongodb"
+  local options=""
+
+  compile "${EXT_MONGODB}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+function install_ext_msgpack() {
+  local ext_name="msgpack.so"
+  local ini_name="msgpack"
+  local options=""
+
+  compile "${EXT_MSGPACK}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+function install_ext_oauth() {
+  local ext_name="oauth.so"
+  local ini_name="oauth"
+  local options=""
+
+  install_deps "pcre-devel"
+  compile "${EXT_OAUTH}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+function install_ext_rar() {
+  local ext_name="rar.so"
+  local ini_name="rar"
+  local options=""
+
+  compile "${EXT_RAR}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+function install_ext_redis() {
+  local ext_name="redis.so"
+  local ini_name="redis"
+  local options="--enable-redis-igbinary --enable-redis-msgpack --enable-redis-lzf"
+
+  install_ext_igbinary
+  install_ext_msgpack
+  install_ext_lzf
+  compile "${EXT_REDIS}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+function install_ext_solr() {
+  local ext_name="solr.so"
+  local ini_name="solr"
+  local options=""
+
+  compile "${EXT_SOLR}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+#function install_ext_ssh2() {
+#  local ext_name="ssh2.so"
+#  local ini_name="ssh2"
+#  local options=""
+#
+#  install_deps "libssh2-devel"
+#  compile "${EXT_SSH2}" "${options}" "${ini_name}" "${ext_name}"
+#}
+
+function install_ext_swoole() {
+  local ext_name="swoole.so"
+  local ini_name="swoole"
+  local options="--enable-openssl --enable-http2 --enable-swoole-json --enable-sockets --enable-mysqlnd"
+
+  compile "${EXT_SWOOLE}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+function install_ext_timezonedb() {
+  local ext_name="timezonedb.so"
+  local ini_name="timezonedb"
+  local options=""
+
+  compile "${EXT_TIMEZONEDB}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+function install_ext_xlswriter() {
+  local ext_name="xlswriter.so"
+  local ini_name="xlswriter"
+  local options="--enable-reader"
+
+  compile "${EXT_XLSWRITER}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+#function install_ext_yaf() {
+#  local ext_name="yaf.so"
+#  local ini_name="yaf"
+#  local options=""
+#
+#  compile "${EXT_YAF}" "${options}" "${ini_name}" "${ext_name}"
+#}
+
+function install_ext_yaml() {
+  local ext_name="yaml.so"
+  local ini_name="yaml"
+  local options=""
+
+  install_deps "libyaml-devel"
+  compile "${EXT_YAML}" "${options}" "${ini_name}" "${ext_name}"
+}
+
+#function install_ext_yar() {
+#  local ext_name="yar.so"
+#  local ini_name="yar"
+#  local options="--enable-msgpack --enable-epoll"
+#
+#  install_ext_msgpack
+#  compile "${EXT_YAR}" "${options}" "${ini_name}" "${ext_name}"
+#}
+
+function install_ext_opcache() {
+  local ext_name="opcache.so"
+  local ini_name="${PHP_INI_SCAN_DIR}/opcache.ini"
+  local options=""
+
+  local extensions_dir="${PHP_PREFIX}/lib/php/extensions/$(ls ${PHP_PREFIX}/lib/php/extensions)"
+  echo "zend_extension=${extensions_dir}/${ext_name}" > "${ini_name}"
+}
+
+for var in "$@"
+do
+  if [ "$(type -t install_ext_${var})" == "function" ]; then
+    install_ext_${var}
+  else
+    echo "extension ${var} not found"
+  fi
+done
+
+dnf clean all

@@ -19,6 +19,7 @@ RUN set -eux; \
     libzip-devel \
     mhash-devel \
     openssl-devel \
+    libsodium-devel \
     sqlite-devel \
     libpq-devel \
     gettext-devel \
@@ -30,8 +31,9 @@ RUN set -eux; \
     libXpm-devel \
     gmp-devel \
     curl-devel \
-    libxslt-devel; \
-    yum clean all
+    libxslt-devel \
+    libtidy-devel; \
+    dnf clean all
 
 ENV PHP_VERSION=7.4.13 \
     PHP_PREFIX=/usr/local/php \
@@ -40,18 +42,20 @@ ENV PHP_VERSION=7.4.13 \
     PHP_INI_DIR=/usr/local/php/etc \
     PHP_INI_SCAN_DIR=/usr/local/php/etc/conf.d \
     PHP_FPM_DIR=/usr/local/php/etc \
-    PHP_FPM_SCAN_DIR=/usr/local/php/etc/php-fpm.d
+    PHP_FPM_SCAN_DIR=/usr/local/php/etc/php-fpm.d \
+    PHP_EXT_DIR=/usr/local/php/ext
 
 RUN set -eux; \
     mkdir -p ${PHP_INI_SCAN_DIR}; \
-    mkdir -p ${PHP_FPM_SCAN_DIR}
+    mkdir -p ${PHP_FPM_SCAN_DIR}; \
+    mkdir -p ${PHP_EXT_DIR}
 
 RUN set -eux; \
-    cd ~ \
-    && curl -O https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz \
-    && tar -zxf php-${PHP_VERSION}.tar.gz \
-    && cd php-${PHP_VERSION} \
-    && ./configure \
+    cd ~; \
+    curl -O https://www.php.net/distributions/php-${PHP_VERSION}.tar.gz; \
+    tar -zxf php-${PHP_VERSION}.tar.gz; \
+    cd php-${PHP_VERSION}; \
+    ./configure \
     --with-libdir=lib64 \
     --prefix=${PHP_PREFIX} \
     --bindir=${PHP_BIN_DIR} \
@@ -60,12 +64,14 @@ RUN set -eux; \
     --with-config-file-scan-dir=${PHP_INI_SCAN_DIR} \
     --disable-cgi \
     --enable-fpm \
+    --enable-mysqlnd \
     --with-readline \
     --with-bz2 \
     --with-zip \
     --with-zlib \
     --with-mhash \
     --with-openssl \
+    --with-sodium \
     --with-pdo-mysql=mysqlnd \
     --with-pdo-pgsql \
     --with-mysqli=mysqlnd \
@@ -87,17 +93,25 @@ RUN set -eux; \
     --enable-ftp \
     --enable-sockets \
     --with-xsl \
-    --with-pear \
-    && make -j $(nproc) \
-    && make install \
-    && make clean \
-    && cp php.ini-production ${PHP_INI_DIR}/php.ini-production \
-    && cp php.ini-development ${PHP_INI_DIR}/php.ini-development \
-    && cp php.ini-development ${PHP_INI_DIR}/php.ini \
-    && cp ${PHP_FPM_DIR}/php-fpm.conf.default ${PHP_FPM_DIR}/php-fpm.conf \
-    && cp ${PHP_FPM_SCAN_DIR}/www.conf.default ${PHP_FPM_SCAN_DIR}/www.conf \
-    && cd ~ \
-    && rm -rf php*
+    --with-tidy \
+    --with-pear; \
+    make -j $(nproc); \
+    make install; \
+    make clean; \
+    cp php.ini-production ${PHP_INI_DIR}/php.ini-production; \
+    cp php.ini-development ${PHP_INI_DIR}/php.ini-development; \
+    cp php.ini-development ${PHP_INI_DIR}/php.ini; \
+    cp ${PHP_FPM_DIR}/php-fpm.conf.default ${PHP_FPM_DIR}/php-fpm.conf; \
+    cp ${PHP_FPM_SCAN_DIR}/www.conf.default ${PHP_FPM_SCAN_DIR}/www.conf; \
+    cd ~; \
+    rm -rf php-*; \
+    pecl update-channels
+
+RUN { \
+        echo '[www]'; \
+        echo 'user = root'; \
+        echo 'group = root'; \
+    } | tee ${PHP_FPM_SCAN_DIR}/xx-docker.conf
 
 RUN { \
         echo '[global]'; \
@@ -108,6 +122,10 @@ RUN { \
     } | tee ${PHP_FPM_SCAN_DIR}/zz-docker.conf
 
 COPY docker-php-* /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-php-*
+
+ARG PHP_EXTENSIONS="amqp apcu igbinary lzf memcached mongodb msgpack redis swoole xlswriter yaml opcache"
+RUN docker-php-install ${PHP_EXTENSIONS}
 
 ENTRYPOINT ["docker-php-entrypoint"]
 WORKDIR /var/www
@@ -115,4 +133,4 @@ WORKDIR /var/www
 STOPSIGNAL SIGQUIT
 
 EXPOSE 9000
-CMD ["php-fpm"]
+CMD ["php-fpm", "-R"]
