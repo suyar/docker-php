@@ -42,7 +42,7 @@ PHP_EXT_DIR=/usr/local/php/ext
 ## 用法
 
 - 如果直接用作 `php-fpm`，直接 `docker run -d suyar/php:xx`
-- 如果用作 `cli` 的，直接 `docker run -it --rm carolkey/php:xx php -v`
+- 如果用作 `cli` 的，直接 `docker run -it --rm suyar/php:xx php -v`
 
 ## 预装扩展
 
