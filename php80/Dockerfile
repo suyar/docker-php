@@ -7,7 +7,7 @@ RUN set -eux; \
 
 RUN set -eux; \
     dnf install -y epel-release; \
-    dnf --enablerepo=PowerTools install -y \
+    dnf --enablerepo=powertools install -y \
     autoconf \
     make \
     gcc \

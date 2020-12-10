@@ -57,7 +57,7 @@ function compile() {
 }
 
 function install_deps() {
-    dnf --enablerepo=PowerTools install -y "$@"
+    dnf --enablerepo=powertools install -y "$@"
 }
 
 function install_ext_amqp() {
