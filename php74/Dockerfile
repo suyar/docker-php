@@ -2,8 +2,7 @@ FROM centos:8
 
 LABEL maintainer="su@zorzz.com"
 
-RUN set -eux; \
-    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 RUN set -eux; \
     dnf install -y epel-release; \
@@ -107,13 +106,13 @@ RUN set -eux; \
     rm -rf php-*; \
     pecl update-channels
 
-RUN { \
+RUN set -eux; \
+    { \
         echo '[www]'; \
         echo 'user = root'; \
         echo 'group = root'; \
-    } | tee ${PHP_FPM_SCAN_DIR}/xx-docker.conf
-
-RUN { \
+    } | tee ${PHP_FPM_SCAN_DIR}/xx-docker.conf; \
+    { \
         echo '[global]'; \
         echo 'daemonize = no'; \
         echo; \
@@ -126,6 +125,13 @@ RUN chmod +x /usr/local/bin/docker-php-*
 
 ARG PHP_EXTENSIONS="amqp apcu igbinary lzf memcached mongodb msgpack redis swoole xlswriter yaml opcache"
 RUN docker-php-install ${PHP_EXTENSIONS}
+
+RUN set -eux; \
+    cd ~; \
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
+    php composer-setup.php --install-dir=/usr/local/bin --filename=composer; \
+    php -r "unlink('composer-setup.php');"; \
+    chmod +x /usr/local/bin/composer
 
 ENTRYPOINT ["docker-php-entrypoint"]
 WORKDIR /var/www
