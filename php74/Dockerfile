@@ -34,7 +34,7 @@ RUN set -eux; \
     libtidy-devel; \
     dnf clean all
 
-ENV PHP_VERSION=7.4.14 \
+ENV PHP_VERSION=7.4.15 \
     PHP_PREFIX=/usr/local/php \
     PHP_BIN_DIR=/usr/local/bin \
     PHP_SBIN_DIR=/usr/local/sbin \

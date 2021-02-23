@@ -34,7 +34,7 @@ RUN set -eux; \
     libtidy-devel; \
     dnf clean all
 
-ENV PHP_VERSION=8.0.1 \
+ENV PHP_VERSION=8.0.2 \
     PHP_PREFIX=/usr/local/php \
     PHP_BIN_DIR=/usr/local/bin \
     PHP_SBIN_DIR=/usr/local/sbin \

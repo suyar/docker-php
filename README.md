@@ -47,4 +47,4 @@ PHP_EXT_DIR=/usr/local/php/ext
 ## 预装扩展
 
 - 详细的内容请看对应 PHP 版本的 README 文件
-- 如果需要安装其他扩展，可以参考 `docker-php-entrypoint` 文件
+- 如果需要安装其他扩展，可以参考 `docker-php-install` 文件
