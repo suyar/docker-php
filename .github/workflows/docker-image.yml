@@ -17,11 +17,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Docker meta
-        uses: docker/metadata-action@v3
-        with:
-          images: suyar/php
-
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
@@ -33,95 +28,95 @@ jobs:
         with:
           context: ./7.0-cli
           push: true
-          tags: 7.0-cli
+          tags: suyar/php:7.0-cli
 
       - name: Build and push 7.0-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./7.0-fpm
           push: true
-          tags: 7.0-fpm
+          tags: suyar/php:7.0-fpm
 
       - name: Build and push 7.1-cli
         uses: docker/build-push-action@v2
         with:
           context: ./7.1-cli
           push: true
-          tags: 7.1-cli
+          tags: suyar/php:7.1-cli
 
       - name: Build and push 7.1-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./7.1-fpm
           push: true
-          tags: 7.1-fpm
+          tags: suyar/php:7.1-fpm
 
       - name: Build and push 7.2-cli
         uses: docker/build-push-action@v2
         with:
           context: ./7.2-cli
           push: true
-          tags: 7.2-cli
+          tags: suyar/php:7.2-cli
 
       - name: Build and push 7.2-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./7.2-fpm
           push: true
-          tags: 7.2-fpm
+          tags: suyar/php:7.2-fpm
 
       - name: Build and push 7.3-cli
         uses: docker/build-push-action@v2
         with:
           context: ./7.3-cli
           push: true
-          tags: 7.3-cli
+          tags: suyar/php:7.3-cli
 
       - name: Build and push 7.3-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./7.3-fpm
           push: true
-          tags: 7.3-fpm
+          tags: suyar/php:7.3-fpm
 
       - name: Build and push 7.4-cli
         uses: docker/build-push-action@v2
         with:
           context: ./7.4-cli
           push: true
-          tags: 7.4-cli
+          tags: suyar/php:7.4-cli
 
       - name: Build and push 7.4-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./7.4-fpm
           push: true
-          tags: 7.4-fpm
+          tags: suyar/php:7.4-fpm
 
       - name: Build and push 8.0-cli
         uses: docker/build-push-action@v2
         with:
           context: ./8.0-cli
           push: true
-          tags: 8.0-cli
+          tags: suyar/php:8.0-cli
 
       - name: Build and push 8.0-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./8.0-fpm
           push: true
-          tags: 8.0-fpm
+          tags: suyar/php:8.0-fpm
 
       - name: Build and push 8.1-cli
         uses: docker/build-push-action@v2
         with:
           context: ./8.1-cli
           push: true
-          tags: 8.1-cli
+          tags: suyar/php:8.1-cli
 
       - name: Build and push 8.1-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./8.1-fpm
           push: true
-          tags: 8.1-fpm
+          tags: suyar/php:8.1-fpm
