@@ -29,7 +29,7 @@ jobs:
       - name: Login to Ali
         uses: docker/login-action@v1
         with:
-          registry: registry.cn-hangzhou.aliyuncs.com
+          registry: ${{ secrets.ALI_DOCKER_REPO }}
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
@@ -38,14 +38,18 @@ jobs:
         with:
           context: ./7.0-cli
           push: true
-          tags: suyar/php:7.0-cli
+          tags: |
+            suyar/php:7.0-cli
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.0-cli
 
       - name: Build and push 7.0-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./7.0-fpm
           push: true
-          tags: suyar/php:7.0-fpm
+          tags: |
+            suyar/php:7.0-fpm
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.0-fpm
 
   build_and_push_php71:
 
@@ -64,7 +68,7 @@ jobs:
       - name: Login to Ali
         uses: docker/login-action@v1
         with:
-          registry: registry.cn-hangzhou.aliyuncs.com
+          registry: ${{ secrets.ALI_DOCKER_REPO }}
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
@@ -73,14 +77,18 @@ jobs:
         with:
           context: ./7.1-cli
           push: true
-          tags: suyar/php:7.1-cli
+          tags: |
+            suyar/php:7.1-cli
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.1-cli
 
       - name: Build and push 7.1-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./7.1-fpm
           push: true
-          tags: suyar/php:7.1-fpm
+          tags: |
+            suyar/php:7.1-fpm
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.1-fpm
 
   build_and_push_php72:
 
@@ -99,7 +107,7 @@ jobs:
       - name: Login to Ali
         uses: docker/login-action@v1
         with:
-          registry: registry.cn-hangzhou.aliyuncs.com
+          registry: ${{ secrets.ALI_DOCKER_REPO }}
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
@@ -108,14 +116,18 @@ jobs:
         with:
           context: ./7.2-cli
           push: true
-          tags: suyar/php:7.2-cli
+          tags: |
+            suyar/php:7.2-cli
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.2-cli
 
       - name: Build and push 7.2-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./7.2-fpm
           push: true
-          tags: suyar/php:7.2-fpm
+          tags: |
+            suyar/php:7.2-fpm
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.2-fpm
 
   build_and_push_php73:
 
@@ -134,7 +146,7 @@ jobs:
       - name: Login to Ali
         uses: docker/login-action@v1
         with:
-          registry: registry.cn-hangzhou.aliyuncs.com
+          registry: ${{ secrets.ALI_DOCKER_REPO }}
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
@@ -143,14 +155,18 @@ jobs:
         with:
           context: ./7.3-cli
           push: true
-          tags: suyar/php:7.3-cli
+          tags: |
+            suyar/php:7.3-cli
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.3-cli
 
       - name: Build and push 7.3-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./7.3-fpm
           push: true
-          tags: suyar/php:7.3-fpm
+          tags: |
+            suyar/php:7.3-fpm
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.3-fpm
 
   build_and_push_php74:
 
@@ -169,7 +185,7 @@ jobs:
       - name: Login to Ali
         uses: docker/login-action@v1
         with:
-          registry: registry.cn-hangzhou.aliyuncs.com
+          registry: ${{ secrets.ALI_DOCKER_REPO }}
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
@@ -178,14 +194,18 @@ jobs:
         with:
           context: ./7.4-cli
           push: true
-          tags: suyar/php:7.4-cli
+          tags: |
+            suyar/php:7.4-cli
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.4-cli
 
       - name: Build and push 7.4-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./7.4-fpm
           push: true
-          tags: suyar/php:7.4-fpm
+          tags: |
+            suyar/php:7.4-fpm
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.4-fpm
 
   build_and_push_php80:
 
@@ -204,7 +224,7 @@ jobs:
       - name: Login to Ali
         uses: docker/login-action@v1
         with:
-          registry: registry.cn-hangzhou.aliyuncs.com
+          registry: ${{ secrets.ALI_DOCKER_REPO }}
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
@@ -213,14 +233,18 @@ jobs:
         with:
           context: ./8.0-cli
           push: true
-          tags: suyar/php:8.0-cli
+          tags: |
+            suyar/php:8.0-cli
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:8.0-cli
 
       - name: Build and push 8.0-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./8.0-fpm
           push: true
-          tags: suyar/php:8.0-fpm
+          tags: |
+            suyar/php:8.0-fpm
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:8.0-fpm
 
   build_and_push_php81:
 
@@ -239,7 +263,7 @@ jobs:
       - name: Login to Ali
         uses: docker/login-action@v1
         with:
-          registry: registry.cn-hangzhou.aliyuncs.com
+          registry: ${{ secrets.ALI_DOCKER_REPO }}
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
@@ -248,11 +272,15 @@ jobs:
         with:
           context: ./8.1-cli
           push: true
-          tags: suyar/php:8.1-cli
+          tags: |
+            suyar/php:8.1-cli
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:8.1-cli
 
       - name: Build and push 8.1-fpm
         uses: docker/build-push-action@v2
         with:
           context: ./8.1-fpm
           push: true
-          tags: suyar/php:8.1-fpm
+          tags: |
+            suyar/php:8.1-fpm
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:8.1-fpm
