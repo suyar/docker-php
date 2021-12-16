@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '0 16 * * 6'
+    - cron: '0 18 * * 6'
 
 jobs:
   build_and_push_php70:
@@ -34,7 +34,8 @@ jobs:
       - name: Build and push 7.0-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.0-cli-alpine
+          context: ./7.0-cli
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.0-cli-alpine
@@ -43,7 +44,8 @@ jobs:
       - name: Build and push 7.0-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.0-fpm-alpine
+          context: ./7.0-fpm
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.0-fpm-alpine
@@ -73,7 +75,8 @@ jobs:
       - name: Build and push 7.1-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.1-cli-alpine
+          context: ./7.1-cli
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.1-cli-alpine
@@ -82,7 +85,8 @@ jobs:
       - name: Build and push 7.1-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.1-fpm-alpine
+          context: ./7.1-fpm
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.1-fpm-alpine
@@ -112,7 +116,8 @@ jobs:
       - name: Build and push 7.2-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.2-cli-alpine
+          context: ./7.2-cli
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.2-cli-alpine
@@ -121,7 +126,8 @@ jobs:
       - name: Build and push 7.2-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.2-fpm-alpine
+          context: ./7.2-fpm
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.2-fpm-alpine
@@ -151,7 +157,8 @@ jobs:
       - name: Build and push 7.3-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.3-cli-alpine
+          context: ./7.3-cli
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.3-cli-alpine
@@ -160,7 +167,8 @@ jobs:
       - name: Build and push 7.3-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.3-fpm-alpine
+          context: ./7.3-fpm
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.3-fpm-alpine
@@ -190,7 +198,8 @@ jobs:
       - name: Build and push 7.4-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.4-cli-alpine
+          context: ./7.4-cli
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.4-cli-alpine
@@ -199,7 +208,8 @@ jobs:
       - name: Build and push 7.4-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.4-fpm-alpine
+          context: ./7.4-fpm
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.4-fpm-alpine
@@ -229,7 +239,8 @@ jobs:
       - name: Build and push 8.0-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./8.0-cli-alpine
+          context: ./8.0-cli
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:8.0-cli-alpine
@@ -238,7 +249,8 @@ jobs:
       - name: Build and push 8.0-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./8.0-fpm-alpine
+          context: ./8.0-fpm
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:8.0-fpm-alpine
@@ -268,7 +280,8 @@ jobs:
       - name: Build and push 8.1-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./8.1-cli-alpine
+          context: ./8.1-cli
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:8.1-cli-alpine
@@ -277,7 +290,8 @@ jobs:
       - name: Build and push 8.1-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./8.1-fpm-alpine
+          context: ./8.1-fpm
+          file: Dockerfile-alpine
           push: true
           tags: |
             suyar/php:8.1-fpm-alpine
