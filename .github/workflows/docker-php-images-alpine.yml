@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./7.0-cli
-          file: Dockerfile-alpine
+          file: ./7.0-cli/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.0-cli-alpine
@@ -45,7 +45,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./7.0-fpm
-          file: Dockerfile-alpine
+          file: ./7.0-fpm/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.0-fpm-alpine
@@ -76,7 +76,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./7.1-cli
-          file: Dockerfile-alpine
+          file: ./7.1-cli/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.1-cli-alpine
@@ -86,7 +86,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./7.1-fpm
-          file: Dockerfile-alpine
+          file: ./7.1-fpm/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.1-fpm-alpine
@@ -117,7 +117,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./7.2-cli
-          file: Dockerfile-alpine
+          file: ./7.2-cli/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.2-cli-alpine
@@ -127,7 +127,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./7.2-fpm
-          file: Dockerfile-alpine
+          file: ./7.2-fpm/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.2-fpm-alpine
@@ -158,7 +158,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./7.3-cli
-          file: Dockerfile-alpine
+          file: ./7.3-cli/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.3-cli-alpine
@@ -168,7 +168,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./7.3-fpm
-          file: Dockerfile-alpine
+          file: ./7.3-fpm/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.3-fpm-alpine
@@ -199,7 +199,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./7.4-cli
-          file: Dockerfile-alpine
+          file: ./7.4-cli/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.4-cli-alpine
@@ -209,7 +209,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./7.4-fpm
-          file: Dockerfile-alpine
+          file: ./7.4-fpm/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:7.4-fpm-alpine
@@ -240,7 +240,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./8.0-cli
-          file: Dockerfile-alpine
+          file: ./8.0-cli/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:8.0-cli-alpine
@@ -250,7 +250,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./8.0-fpm
-          file: Dockerfile-alpine
+          file: ./8.0-fpm/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:8.0-fpm-alpine
@@ -281,7 +281,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./8.1-cli
-          file: Dockerfile-alpine
+          file: ./8.1-cli/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:8.1-cli-alpine
@@ -291,7 +291,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./8.1-fpm
-          file: Dockerfile-alpine
+          file: ./8.1-fpm/Dockerfile-alpine
           push: true
           tags: |
             suyar/php:8.1-fpm-alpine
