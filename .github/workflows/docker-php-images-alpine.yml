@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Build PHP Images Alpine
 
 on:
   push:
@@ -31,23 +31,23 @@ jobs:
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
-      - name: Build and push 7.0-cli
+      - name: Build and push 7.0-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.0-cli
+          context: ./7.0-cli-alpine
           push: true
           tags: |
-            suyar/php:7.0-cli
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.0-cli
+            suyar/php:7.0-cli-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.0-cli-alpine
 
-      - name: Build and push 7.0-fpm
+      - name: Build and push 7.0-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.0-fpm
+          context: ./7.0-fpm-alpine
           push: true
           tags: |
-            suyar/php:7.0-fpm
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.0-fpm
+            suyar/php:7.0-fpm-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.0-fpm-alpine
 
   build_and_push_php71:
 
@@ -70,23 +70,23 @@ jobs:
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
-      - name: Build and push 7.1-cli
+      - name: Build and push 7.1-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.1-cli
+          context: ./7.1-cli-alpine
           push: true
           tags: |
-            suyar/php:7.1-cli
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.1-cli
+            suyar/php:7.1-cli-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.1-cli-alpine
 
-      - name: Build and push 7.1-fpm
+      - name: Build and push 7.1-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.1-fpm
+          context: ./7.1-fpm-alpine
           push: true
           tags: |
-            suyar/php:7.1-fpm
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.1-fpm
+            suyar/php:7.1-fpm-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.1-fpm-alpine
 
   build_and_push_php72:
 
@@ -109,23 +109,23 @@ jobs:
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
-      - name: Build and push 7.2-cli
+      - name: Build and push 7.2-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.2-cli
+          context: ./7.2-cli-alpine
           push: true
           tags: |
-            suyar/php:7.2-cli
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.2-cli
+            suyar/php:7.2-cli-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.2-cli-alpine
 
-      - name: Build and push 7.2-fpm
+      - name: Build and push 7.2-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.2-fpm
+          context: ./7.2-fpm-alpine
           push: true
           tags: |
-            suyar/php:7.2-fpm
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.2-fpm
+            suyar/php:7.2-fpm-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.2-fpm-alpine
 
   build_and_push_php73:
 
@@ -148,23 +148,23 @@ jobs:
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
-      - name: Build and push 7.3-cli
+      - name: Build and push 7.3-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.3-cli
+          context: ./7.3-cli-alpine
           push: true
           tags: |
-            suyar/php:7.3-cli
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.3-cli
+            suyar/php:7.3-cli-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.3-cli-alpine
 
-      - name: Build and push 7.3-fpm
+      - name: Build and push 7.3-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.3-fpm
+          context: ./7.3-fpm-alpine
           push: true
           tags: |
-            suyar/php:7.3-fpm
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.3-fpm
+            suyar/php:7.3-fpm-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.3-fpm-alpine
 
   build_and_push_php74:
 
@@ -187,23 +187,23 @@ jobs:
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
-      - name: Build and push 7.4-cli
+      - name: Build and push 7.4-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.4-cli
+          context: ./7.4-cli-alpine
           push: true
           tags: |
-            suyar/php:7.4-cli
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.4-cli
+            suyar/php:7.4-cli-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.4-cli-alpine
 
-      - name: Build and push 7.4-fpm
+      - name: Build and push 7.4-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./7.4-fpm
+          context: ./7.4-fpm-alpine
           push: true
           tags: |
-            suyar/php:7.4-fpm
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.4-fpm
+            suyar/php:7.4-fpm-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:7.4-fpm-alpine
 
   build_and_push_php80:
 
@@ -226,23 +226,23 @@ jobs:
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
-      - name: Build and push 8.0-cli
+      - name: Build and push 8.0-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./8.0-cli
+          context: ./8.0-cli-alpine
           push: true
           tags: |
-            suyar/php:8.0-cli
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:8.0-cli
+            suyar/php:8.0-cli-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:8.0-cli-alpine
 
-      - name: Build and push 8.0-fpm
+      - name: Build and push 8.0-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./8.0-fpm
+          context: ./8.0-fpm-alpine
           push: true
           tags: |
-            suyar/php:8.0-fpm
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:8.0-fpm
+            suyar/php:8.0-fpm-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:8.0-fpm-alpine
 
   build_and_push_php81:
 
@@ -265,20 +265,20 @@ jobs:
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
-      - name: Build and push 8.1-cli
+      - name: Build and push 8.1-cli-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./8.1-cli
+          context: ./8.1-cli-alpine
           push: true
           tags: |
-            suyar/php:8.1-cli
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:8.1-cli
+            suyar/php:8.1-cli-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:8.1-cli-alpine
 
-      - name: Build and push 8.1-fpm
+      - name: Build and push 8.1-fpm-alpine
         uses: docker/build-push-action@v2
         with:
-          context: ./8.1-fpm
+          context: ./8.1-fpm-alpine
           push: true
           tags: |
-            suyar/php:8.1-fpm
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:8.1-fpm
+            suyar/php:8.1-fpm-alpine
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:8.1-fpm-alpine
