@@ -7,22 +7,38 @@
 - [基础镜像](https://hub.docker.com/_/php)
 - [扩展安装](https://github.com/mlocati/docker-php-extension-installer)
 
+> 官方镜像的支持生命周期有限，部分版本不再构建，具体参考 [PHP 版本支持](https://www.php.net/supported-versions.php)
+
 ## 构建镜像
 
-- suyar/php:7.0-fpm
-- suyar/php:7.0-cli
-- suyar/php:7.1-fpm
-- suyar/php:7.1-cli
+- ~~suyar/php:7.0-fpm~~
+- ~~suyar/php:7.0-fpm-alpine~~
+- ~~suyar/php:7.0-cli~~
+- ~~suyar/php:7.0-cli-alpine~~
+- ~~suyar/php:7.1-fpm~~
+- ~~suyar/php:7.1-fpm-alpine~~
+- ~~suyar/php:7.1-cli~~
+- ~~suyar/php:7.1-cli-alpine~~
 - suyar/php:7.2-fpm
+- suyar/php:7.2-fpm-alpine
 - suyar/php:7.2-cli
+- suyar/php:7.2-cli-alpine
 - suyar/php:7.3-fpm
+- suyar/php:7.3-fpm-alpine
 - suyar/php:7.3-cli
+- suyar/php:7.3-cli-alpine
 - suyar/php:7.4-fpm
+- suyar/php:7.4-fpm-alpine
 - suyar/php:7.4-cli
+- suyar/php:7.4-cli-alpine
 - suyar/php:8.0-fpm
+- suyar/php:8.0-fpm-alpine
 - suyar/php:8.0-cli
+- suyar/php:8.0-cli-alpine
 - suyar/php:8.1-fpm
+- suyar/php:8.1-fpm-alpine
 - suyar/php:8.1-cli
+- suyar/php:8.1-cli-alpine
 
 ## 使用镜像
 
