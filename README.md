@@ -15,10 +15,10 @@
 - ~~suyar/php:7.0-fpm-alpine~~
 - ~~suyar/php:7.0-cli~~
 - ~~suyar/php:7.0-cli-alpine~~
-- ~~suyar/php:7.1-fpm~~
-- ~~suyar/php:7.1-fpm-alpine~~
-- ~~suyar/php:7.1-cli~~
-- ~~suyar/php:7.1-cli-alpine~~
+- suyar/php:7.1-fpm
+- suyar/php:7.1-fpm-alpine
+- suyar/php:7.1-cli
+- suyar/php:7.1-cli-alpine
 - suyar/php:7.2-fpm
 - suyar/php:7.2-fpm-alpine
 - suyar/php:7.2-cli
