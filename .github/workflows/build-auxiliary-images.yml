@@ -1,0 +1,47 @@
+name: Build Auxiliary Images
+
+on:
+#  push:
+#    branches: [ main ]
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 18 * * 6'
+
+jobs:
+  build_and_push_php:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        version:
+          - "8.0"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push ${{ matrix.version }}-cli-supervisor
+        uses: docker/build-push-action@v2
+        with:
+          context: ./auxiliary/${{ matrix.version }}-cli-supervisor
+          push: true
+          tags: |
+            suyar/php:${{ matrix.version }}-cli-supervisor
+
+      - name: Build and push ${{ matrix.version }}-cli-alpine-supervisor
+        uses: docker/build-push-action@v2
+        with:
+          context: ./auxiliary/${{ matrix.version }}-cli-supervisor
+          file: ./auxiliary/${{ matrix.version }}-cli-supervisor/Dockerfile-alpine
+          push: true
+          tags: |
+            suyar/php:${{ matrix.version }}-cli-alpine-supervisor
