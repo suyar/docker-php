@@ -56,7 +56,7 @@ docker pull suyar/php:8.1-fpm
 预装扩展请以对应镜像的 Dockerfile 文件为准
 
 ```
-docker exec --rm suyar/php:8.0-cli php -m
+docker run --rm suyar/php:8.0-cli php -m
 
 [PHP Modules]
 amqp
