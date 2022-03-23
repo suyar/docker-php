@@ -45,3 +45,20 @@ jobs:
           push: true
           tags: |
             suyar/php:${{ matrix.version }}-cli-alpine-supervisor
+
+      - name: Build and push ${{ matrix.version }}-cli-cron
+        uses: docker/build-push-action@v2
+        with:
+          context: ./auxiliary/${{ matrix.version }}-cli-cron
+          push: true
+          tags: |
+            suyar/php:${{ matrix.version }}-cli-cron
+
+      - name: Build and push ${{ matrix.version }}-cli-alpine-cron
+        uses: docker/build-push-action@v2
+        with:
+          context: ./auxiliary/${{ matrix.version }}-cli-cron
+          file: ./auxiliary/${{ matrix.version }}-cli-cron/Dockerfile-alpine
+          push: true
+          tags: |
+            suyar/php:${{ matrix.version }}-cli-alpine-cron
