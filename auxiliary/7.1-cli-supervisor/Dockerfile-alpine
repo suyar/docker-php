@@ -1,0 +1,6 @@
+FROM suyar/php:7.1-cli-alpine
+
+RUN set -eux; \
+    apk add --no-cache supervisor
+
+CMD ["supervisord","-c","/etc/supervisord.conf","-n"]
