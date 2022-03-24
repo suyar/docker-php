@@ -8,7 +8,7 @@
 
 - 基于 [PHP 官方镜像](https://hub.docker.com/_/php)
 - 基于 [扩展安装工具](https://github.com/mlocati/docker-php-extension-installer)
-- 基于 `GitHub Actions` 每周自动构建 `0 12 * * 6`
+- 基于 `GitHub Actions` 每周自动构建
 
 ## 构建镜像
 
