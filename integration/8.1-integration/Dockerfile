@@ -5,8 +5,8 @@ RUN set -eux; \
     && apt-get install -y supervisor cron \
     && rm -rf /var/lib/apt/lists/*
 
-COPY ./docker-integration.ini /etc/supervisor/conf.d/
+COPY ./docker-integration.conf /etc/supervisor/conf.d/
 
-RUN chmod -R 644 /etc/supervisor/conf.d/*.ini
+RUN chmod -R 644 /etc/supervisor/conf.d/*.conf
 
 CMD ["supervisord","-c","/etc/supervisor/supervisord.conf","-n"]
