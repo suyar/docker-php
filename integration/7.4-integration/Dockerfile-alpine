@@ -1,0 +1,10 @@
+FROM suyar/php:7.4-fpm-alpine
+
+RUN set -eux; \
+    apk add --no-cache supervisor
+
+COPY ./docker-integration-alpine.ini /etc/supervisor.d/
+
+RUN chmod -R 644 /etc/supervisor.d/*.ini
+
+CMD ["supervisord","-c","/etc/supervisord.conf","-n"]

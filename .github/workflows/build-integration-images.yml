@@ -1,0 +1,53 @@
+name: Build Integration Images
+
+on:
+#  push:
+#    branches: [ main ]
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 19 * * 6'
+
+jobs:
+  build_and_push_php:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        version:
+          - "7.0"
+          - "7.1"
+          - "7.2"
+          - "7.3"
+          - "7.4"
+          - "8.0"
+          - "8.1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push ${{ matrix.version }}-integration
+        uses: docker/build-push-action@v2
+        with:
+          context: ./auxiliary/${{ matrix.version }}-integration
+          push: true
+          tags: |
+            suyar/php:${{ matrix.version }}-integration
+
+      - name: Build and push ${{ matrix.version }}-alpine-integration
+        uses: docker/build-push-action@v2
+        with:
+          context: ./auxiliary/${{ matrix.version }}-integration
+          file: ./auxiliary/${{ matrix.version }}-integration/Dockerfile-alpine
+          push: true
+          tags: |
+            suyar/php:${{ matrix.version }}-alpine-integration
