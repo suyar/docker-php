@@ -2,15 +2,17 @@
 
 ## 仓库概述
 
-基于官方镜像的 php 镜像，已安装常用扩展
+基于官方镜像的 PHP 镜像，已安装常用扩展。
 
 > 官方 PHP 版本生命周期参考 [PHP 版本支持](https://www.php.net/supported-versions.php)
 
-- [`PHP` 官方镜像](https://hub.docker.com/_/php)
-- [扩展安装工具](https://github.com/mlocati/docker-php-extension-installer)
+- 基于 [PHP 官方镜像](https://hub.docker.com/_/php)
+- 基于 [扩展安装工具](https://github.com/mlocati/docker-php-extension-installer)
 - 基于 `GitHub Actions` 每周自动构建 `0 12 * * 6`
 
 ## 构建镜像
+
+### 主要镜像
 
 - suyar/php:7.0-fpm
 - suyar/php:7.0-fpm-alpine
@@ -41,6 +43,37 @@
 - suyar/php:8.1-cli
 - suyar/php:8.1-cli-alpine
 
+### 辅助镜像
+
+- suyar/php:7.0-cli-supervisor
+- suyar/php:7.0-cli-alpine-supervisor
+- suyar/php:7.0-cli-cron
+- suyar/php:7.0-cli-alpine-cron
+- suyar/php:7.1-cli-supervisor
+- suyar/php:7.1-cli-alpine-supervisor
+- suyar/php:7.1-cli-cron
+- suyar/php:7.1-cli-alpine-cron
+- suyar/php:7.2-cli-supervisor
+- suyar/php:7.2-cli-alpine-supervisor
+- suyar/php:7.2-cli-cron
+- suyar/php:7.2-cli-alpine-cron
+- suyar/php:7.3-cli-supervisor
+- suyar/php:7.3-cli-alpine-supervisor
+- suyar/php:7.3-cli-cron
+- suyar/php:7.3-cli-alpine-cron
+- suyar/php:7.4-cli-supervisor
+- suyar/php:7.4-cli-alpine-supervisor
+- suyar/php:7.4-cli-cron
+- suyar/php:7.4-cli-alpine-cron
+- suyar/php:8.0-cli-supervisor
+- suyar/php:8.0-cli-alpine-supervisor
+- suyar/php:8.0-cli-cron
+- suyar/php:8.0-cli-alpine-cron
+- suyar/php:8.1-cli-supervisor
+- suyar/php:8.1-cli-alpine-supervisor
+- suyar/php:8.1-cli-cron
+- suyar/php:8.1-cli-alpine-cron
+
 ## 使用镜像
 
 ```
@@ -53,7 +86,7 @@ docker pull suyar/php:8.1-fpm
 
 ## 预装扩展
 
-预装扩展请以对应镜像的 Dockerfile 文件为准
+预装扩展请以对应镜像的 `Dockerfile` 文件为准。
 
 ```
 docker run --rm suyar/php:8.0-cli php -m
