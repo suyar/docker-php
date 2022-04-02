@@ -1,5 +1,7 @@
 # Docker Images For PHP
 
+[![docker pulls](https://img.shields.io/docker/pulls/suyar/php)](https://hub.docker.com/r/suyar/php)
+
 ## 仓库概述
 
 基于官方镜像的 PHP 镜像，已安装常用扩展。
