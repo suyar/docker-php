@@ -6,7 +6,7 @@
 
 基于官方镜像的 PHP 镜像，已安装常用扩展。
 
-> 官方 PHP 版本生命周期参考 [PHP 版本支持](https://www.php.net/supported-versions.php)
+PHP 版本生命周期参考 [PHP 版本支持](https://www.php.net/supported-versions.php)
 
 - 基于 [PHP 官方镜像](https://hub.docker.com/_/php)
 - 基于 [扩展安装工具](https://github.com/mlocati/docker-php-extension-installer)
@@ -107,7 +107,7 @@ docker pull suyar/php:8.1-fpm
 
 镜像仓库 [https://hub.docker.com/r/suyar/php](https://hub.docker.com/r/suyar/php)
 
-> 更多用法请参考 [官方镜像](https://hub.docker.com/_/php)
+更多用法请参考 [PHP 官方镜像](https://hub.docker.com/_/php)
 
 ## 预装扩展
 
@@ -140,6 +140,7 @@ gmp
 hash
 iconv
 igbinary
+imagick
 intl
 json
 libxml
