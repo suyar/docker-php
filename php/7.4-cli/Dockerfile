@@ -20,6 +20,7 @@ RUN set -eux; \
     gettext \
     gmp \
     igbinary \
+    imagick \
     intl \
     lzf \
     memcached \
