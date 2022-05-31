@@ -8,9 +8,9 @@
 
 PHP 版本生命周期参考 [PHP 版本支持](https://www.php.net/supported-versions.php)
 
-- 基于 [PHP 官方镜像](https://hub.docker.com/_/php)
-- 基于 [扩展安装工具](https://github.com/mlocati/docker-php-extension-installer)
-- 基于 `GitHub Actions` 每周自动构建
+- 基于 [PHP Official Images](https://hub.docker.com/_/php)
+- 基于 [docker-php-extension-installer](https://github.com/mlocati/docker-php-extension-installer)
+- 基于 `GitHub Actions` 自动构建
 
 ## 构建镜像
 
