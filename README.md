@@ -82,7 +82,7 @@ PHP 版本生命周期参考 [PHP 版本支持](https://www.php.net/supported-ve
 
 ## 集成镜像
 
-这些镜像都是从『主要镜像』构建的，包含 `php-fpm`、`supervisor` 和 `cron`，其中 `php-fpm` 和 `cron` 使用 `supervisor` 管理。
+这些镜像都是从『主要镜像』构建的，包含 `composer`、`php-fpm`、`supervisor` 和 `cron`，其中 `php-fpm` 和 `cron` 使用 `supervisor` 管理。
 
 - suyar/php:7.0-integration
 - suyar/php:7.0-alpine-integration

@@ -3,6 +3,7 @@ FROM suyar/php:7.3-fpm-alpine
 RUN set -eux; \
     apk add --no-cache supervisor
 
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY ./docker-integration-alpine.ini /etc/supervisor.d/
 
 RUN chmod -R 644 /etc/supervisor.d/*.ini
