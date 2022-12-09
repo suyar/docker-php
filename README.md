@@ -195,6 +195,7 @@ pdo_sqlite
 pgsql
 Phar
 posix
+random
 readline
 redis
 Reflection
