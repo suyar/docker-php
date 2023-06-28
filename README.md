@@ -12,17 +12,16 @@ PHP 版本生命周期参考 [PHP 版本支持](https://www.php.net/supported-ve
 - 基于 [docker-php-extension-installer](https://github.com/mlocati/docker-php-extension-installer)
 - 基于 `GitHub Actions` 自动构建
 
+## 更新日志
+
+- [2023-06-28] 移除 php7.0 支持，之前构建的镜像依然可以使用，但不建议使用，具体可以查看 [#763](https://github.com/mlocati/docker-php-extension-installer/pull/763)
+
 ## 构建镜像
 
 ### 主要镜像
 
 这些镜像都是从官方镜像构建的，不包含其他第三方软件。
 
-- PHP 7.0
-    - [`suyar/php:7.0-fpm`](https://hub.docker.com/r/suyar/php/tags?name=7.0-fpm)
-    - [`suyar/php:7.0-fpm-alpine`](https://hub.docker.com/r/suyar/php/tags?name=7.0-fpm-alpine)
-    - [`suyar/php:7.0-cli`](https://hub.docker.com/r/suyar/php/tags?name=7.0-cli)
-    - [`suyar/php:7.0-cli-alpine`](https://hub.docker.com/r/suyar/php/tags?name=7.0-cli-alpine)
 - PHP 7.1
     - [`suyar/php:7.1-fpm`](https://hub.docker.com/r/suyar/php/tags?name=7.1-fpm)
     - [`suyar/php:7.1-fpm-alpine`](https://hub.docker.com/r/suyar/php/tags?name=7.1-fpm-alpine)
@@ -63,11 +62,6 @@ PHP 版本生命周期参考 [PHP 版本支持](https://www.php.net/supported-ve
 
 这些镜像都是从『主要镜像』构建的，包含 `supervisor` 或 `cron`。
 
-- PHP 7.0
-    - [`suyar/php:7.0-cli-supervisor`](https://hub.docker.com/r/suyar/php/tags?name=7.0-cli-supervisor)
-    - [`suyar/php:7.0-cli-alpine-supervisor`](https://hub.docker.com/r/suyar/php/tags?name=7.0-cli-alpine-supervisor)
-    - [`suyar/php:7.0-cli-cron`](https://hub.docker.com/r/suyar/php/tags?name=7.0-cli-cron)
-    - [`suyar/php:7.0-cli-alpine-cron`](https://hub.docker.com/r/suyar/php/tags?name=7.0-cli-alpine-cron)
 - PHP 7.1
     - [`suyar/php:7.1-cli-supervisor`](https://hub.docker.com/r/suyar/php/tags?name=7.1-cli-supervisor)
     - [`suyar/php:7.1-cli-alpine-supervisor`](https://hub.docker.com/r/suyar/php/tags?name=7.1-cli-alpine-supervisor)
@@ -108,9 +102,6 @@ PHP 版本生命周期参考 [PHP 版本支持](https://www.php.net/supported-ve
 
 这些镜像都是从『主要镜像』构建的，包含 `composer`、`php-fpm`、`supervisor` 和 `cron`，其中 `php-fpm` 和 `cron` 使用 `supervisor` 管理。
 
-- PHP 7.0
-    - [`suyar/php:7.0-integration`](https://hub.docker.com/r/suyar/php/tags?name=7.0-integration)
-    - [`suyar/php:7.0-alpine-integration`](https://hub.docker.com/r/suyar/php/tags?name=7.0-alpine-integration)
 - PHP 7.1
     - [`suyar/php:7.1-integration`](https://hub.docker.com/r/suyar/php/tags?name=7.1-integration)
     - [`suyar/php:7.1-alpine-integration`](https://hub.docker.com/r/suyar/php/tags?name=7.1-alpine-integration)

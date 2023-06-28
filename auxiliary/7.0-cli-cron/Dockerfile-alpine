@@ -1,3 +1,0 @@
-FROM suyar/php:7.0-cli-alpine
-
-CMD ["crond","-f"]
